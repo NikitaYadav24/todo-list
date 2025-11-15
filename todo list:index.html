@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern To-Do List</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Poppins, sans-serif;
+            display: flex;
+            justify-content: center;
+            padding-top: 60px;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        }
+
+        .container {
+            width: 350px;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(12px);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h2 {
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .input-section {
+            display: flex;
+            margin-top: 15px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .add-btn {
+            margin-left: 10px;
+            background: #00c6ff;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .add-btn:hover {
+            background: #00e5ff;
+        }
+
+        ul {
+            padding: 0;
+            margin-top: 20px;
+            list-style: none;
+        }
+
+        li {
+            background: rgba(255, 255, 255, 0.7);
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .del-btn {
+            background: #ff4d4d;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .del-btn:hover {
+            background: #ff6e6e;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>✨ Modern To-Do List ✨</h2>
+
+    <div class="input-section">
+        <input id="taskInput" type="text" placeholder="Enter a new task...">
+        <button class="add-btn" onclick="addTask()">Add</button>
+    </div>
+
+    <ul id="taskList"></ul>
+</div>
+
+<script>
+    function addTask() {
+        let task = document.getElementById("taskInput").value;
+
+        if (task.trim() === "") return;
+
+        let li = document.createElement("li");
+        li.innerHTML = `
+            ${task}
+            <button class="del-btn" onclick="removeTask(this)">X</button>
+        `;
+
+        document.getElementById("taskList").appendChild(li);
+        document.getElementById("taskInput").value = "";
+    }
+
+    function removeTask(btn) {
+        btn.parentElement.remove();
+    }
+</script>
+
+</body>
+</html>
